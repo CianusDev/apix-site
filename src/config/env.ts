@@ -8,27 +8,20 @@ const serverEnvSchema = z.object({
     })
     .min(32, {
       message: "SESSION_SECRET must be at least 32 characters long",
-    })
-    .optional(),
+    }),
 });
 
 // Client-side environment variables (safe to expose to browser)
 const clientEnvSchema = z.object({
-  API_URL: z
-    .url({
-      message: "API_URL must be a valid URL",
-    })
-    .optional(),
-  APP_URL: z
-    .url({
-      message: "APP_URL must be a valid URL",
-    })
-    .optional(),
-  APP_NAME: z
-    .string({
-      message: "APP_NAME is required",
-    })
-    .optional(),
+  API_URL: z.url({
+    message: "API_URL must be a valid URL",
+  }),
+  APP_URL: z.url({
+    message: "APP_URL must be a valid URL",
+  }),
+  APP_NAME: z.string({
+    message: "APP_NAME is required",
+  }),
 });
 
 const serverResult = serverEnvSchema.safeParse({
