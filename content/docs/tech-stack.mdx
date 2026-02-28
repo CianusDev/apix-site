@@ -1,0 +1,39 @@
+# Tech stack
+
+apix is written in Rust and built on a small set of well-maintained libraries.
+
+## Language
+
+**Rust** (2024 edition)
+
+Rust provides memory safety without a garbage collector, predictable performance and a single statically-linked binary with no runtime dependencies.
+This makes apix fast to start, easy to distribute and reliable in production environments.
+
+## TUI
+
+**[Ratatui](https://ratatui.rs) 0.30** + **[Crossterm](https://github.com/crossterm-rs/crossterm) 0.29**
+
+Ratatui is the de-facto standard for building terminal UIs in Rust.
+It provides a retained-mode widget system (layouts, tables, paragraphs, borders) that renders efficiently to any ANSI-compatible terminal.
+Crossterm handles cross-platform raw-mode input and output — including Windows support.
+
+## HTTP
+
+**[Reqwest](https://docs.rs/reqwest) 0.13**
+
+Reqwest is an ergonomic, async HTTP client built on top of `hyper`.
+apix uses it with the `json` and `cookies` features enabled, which gives automatic cookie jar management across requests within a session.
+
+## Async
+
+**[Tokio](https://tokio.rs)**
+
+Tokio is Rust's most widely used async runtime.
+apix uses it to send HTTP requests without blocking the TUI event loop, keeping the interface responsive while waiting for slow responses.
+
+## Serialization
+
+**[Serde](https://serde.rs) + [serde_json](https://docs.rs/serde_json)**
+
+Serde provides derive macros (`Serialize`, `Deserialize`) that map Rust structs directly to JSON.
+All persistent data — history, collections and environments — is stored as human-readable JSON using serde_json.

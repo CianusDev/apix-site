@@ -1,13 +1,14 @@
-import { clientEnv } from "@/config/env";
 import type { MetadataRoute } from "next";
+import { clientEnv } from "@/config/env";
+
+const BASE_URL = clientEnv.APP_URL ?? "https://apix.dev";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: "/private/",
     },
-    sitemap: `${clientEnv.APP_URL}/sitemap.xml`,
+    sitemap: `${BASE_URL}/sitemap.xml`,
   };
 }

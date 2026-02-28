@@ -1,0 +1,98 @@
+# Data storage
+
+apix stores all your data locally. No cloud, no accounts, no telemetry.
+
+## Location
+
+All data lives in the `~/.apix/` directory:
+
+```
+~/.apix/
+├── history.json        # Request history
+├── collections.json    # Saved collections
+└── environments.json   # Environments & variables
+```
+
+The directory is created automatically on first launch.
+
+## history.json
+
+Every request you send is appended to `history.json` as a JSON array.
+Each entry records the full request so it can be replayed exactly.
+
+```json
+[
+  {
+    "id": "a1b2c3",
+    "timestamp": "2025-01-15T10:32:00Z",
+    "method": "POST",
+    "url": "https://api.example.com/users",
+    "headers": {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer eyJhbGci..."
+    },
+    "body": "{\"name\": \"Alice\"}"
+  }
+]
+```
+
+You can safely edit or delete entries by modifying this file directly.
+apix re-reads it on startup.
+
+## collections.json
+
+Named groups of saved requests. Each collection has a name and an array of request objects.
+
+```json
+[
+  {
+    "name": "User API",
+    "requests": [
+      {
+        "name": "Create user",
+        "method": "POST",
+        "url": "https://{{base_url}}/users",
+        "headers": { "Content-Type": "application/json" },
+        "body": "{\"name\": \"Alice\"}"
+      },
+      {
+        "name": "Get all users",
+        "method": "GET",
+        "url": "https://{{base_url}}/users",
+        "headers": {},
+        "body": ""
+      }
+    ]
+  }
+]
+```
+
+Environment variables (e.g. `{{base_url}}`) are stored as-is and resolved at send time.
+
+## environments.json
+
+Named sets of key-value variables. One environment can be active at a time.
+
+```json
+[
+  {
+    "name": "dev",
+    "active": false,
+    "variables": {
+      "base_url": "localhost:3000/api",
+      "token": "dev-secret"
+    }
+  },
+  {
+    "name": "prod",
+    "active": true,
+    "variables": {
+      "base_url": "api.example.com",
+      "token": "prod-secret"
+    }
+  }
+]
+```
+
+The `active` field marks the currently selected environment.
+Variables from the active environment are substituted in URLs and headers before each request.

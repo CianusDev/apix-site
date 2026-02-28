@@ -1,0 +1,128 @@
+# Features
+
+A full tour of everything apix can do — straight from your terminal.
+
+## HTTP methods
+
+apix supports all standard HTTP methods: **GET**, **POST**, **PUT**, **PATCH** and **DELETE**.
+
+Press `m` at any time to cycle through methods. The active method is displayed as a color-coded badge in the persistent URL bar at the top of the interface.
+
+## Query params & headers
+
+### Query params
+
+Switch to the **Params** tab (`1`) in the Request panel to manage inline key=value pairs.
+
+| Key | Action |
+|-----|--------|
+| `a` | Add a new param |
+| `Enter` | Edit the selected param |
+| `d` | Delete the selected param |
+
+### Headers
+
+Switch to the **Headers** tab (`2`) to add, edit or remove HTTP headers. The same key bindings apply.
+
+Common headers like `Content-Type: application/json` are set automatically when sending a JSON body.
+
+## Body editor
+
+Switch to the **Body** tab (`3`) to write a request body. The editor supports:
+
+- **Multi-line input** — `Enter` inserts a new line with auto-indent
+- **2-space indent** — `Tab` inserts two spaces
+- **JSON formatting** — `Ctrl+f` auto-formats the content as pretty-printed JSON
+- **Save & exit** — `Esc` saves the body and returns to the panel
+
+Example body:
+
+```json
+{
+  "name": "Alice",
+  "email": "alice@example.com",
+  "role": "admin"
+}
+```
+
+## Authentication
+
+Switch to the **Auth** tab (`4`) to configure authentication. Three modes are available:
+
+| Mode | Description |
+|------|-------------|
+| **Bearer token** | Adds `Authorization: Bearer <token>` to every request |
+| **Basic Auth** | Encodes `username:password` in Base64 |
+| **API Key** | Sends a custom header (e.g. `X-API-Key: <key>`) |
+
+Authentication is applied automatically to every request once configured.
+
+## Environments
+
+Environments let you define named variables and switch between them (e.g. `dev` vs `prod`).
+
+Press `e` to open the Environments drawer. From there you can:
+
+- Create a new environment with `n`
+- Activate an environment with `Enter`
+- Add / edit variables with `v` then `a`
+- Delete an environment with `d`
+
+Use variables in the URL bar with double curly braces:
+
+```
+https://{{base_url}}/users/{{user_id}}
+```
+
+When an environment is active, variables are substituted before the request is sent. The active environment is shown in the top-right of the URL bar as `[ENV:name]`.
+
+## Collections
+
+Collections let you save requests and reload them later without re-typing the URL, method, headers and body.
+
+Press `c` to open the Collections drawer:
+
+| Key | Action |
+|-----|--------|
+| `a` | Save the current request to the active collection |
+| `n` | Create a new collection |
+| `Enter` | Load the selected request |
+| `d` | Delete the selected item |
+
+## History
+
+Every request you send is automatically logged. Press `h` to open the History drawer.
+
+| Key | Action |
+|-----|--------|
+| `/` | Search through history |
+| `↑` / `↓` | Navigate entries |
+| `Enter` | Reload a past request |
+| `d` | Delete an entry |
+
+The history persists across sessions and is stored locally at `~/.apix/history.json`.
+
+## Response viewer
+
+After sending a request, the Response panel displays:
+
+- **Status code** — colour-coded (green for 2xx, red for 4xx/5xx)
+- **Method** and elapsed time
+
+Three tabs are available:
+
+| Tab | Key | Content |
+|-----|-----|---------|
+| Body | `1` | Syntax-highlighted JSON response |
+| Headers | `2` | All response headers |
+| Cookies | `3` | Cookies set by the server |
+
+Additional actions in the response panel:
+
+| Key | Action |
+|-----|--------|
+| `y` | Copy the response body to the clipboard |
+| `w` | Save the response body to a file |
+| `↑` / `↓` | Scroll through the response |
+
+Cookies are persistent across requests within the same session.

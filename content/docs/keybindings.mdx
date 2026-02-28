@@ -1,0 +1,75 @@
+# Keybindings
+
+apix is designed to be fully keyboard-driven. Here is the complete reference for every context.
+
+## Global
+
+These bindings are available at all times, regardless of the focused panel.
+
+| Key | Action |
+|-----|--------|
+| `s` | Send request |
+| `u` | Edit URL |
+| `m` | Cycle method (GET → POST → PUT → PATCH → DELETE) |
+| `Tab` | Switch focus between Request and Response panels |
+| `h` | Toggle History drawer |
+| `c` | Toggle Collections drawer |
+| `e` | Toggle Environments drawer |
+| `Esc` | Close drawer / cancel current edit |
+| `q` or `Ctrl+C` | Quit apix |
+
+## Request panel
+
+Active when the Request panel has focus (left side).
+
+| Key | Action |
+|-----|--------|
+| `1` | Switch to Params tab |
+| `2` | Switch to Headers tab |
+| `3` | Switch to Body tab |
+| `4` | Switch to Auth tab |
+| `[` | Previous tab |
+| `]` | Next tab |
+| `↑` / `↓` | Navigate the list |
+| `Enter` | Edit the selected item |
+| `a` | Add a new item |
+| `d` | Delete the selected item |
+
+## Response panel
+
+Active when the Response panel has focus (right side).
+
+| Key | Action |
+|-----|--------|
+| `1` | Switch to Body tab |
+| `2` | Switch to Headers tab |
+| `3` | Switch to Cookies tab |
+| `↑` / `↓` | Scroll through the response |
+| `y` | Copy response body to clipboard |
+| `w` | Save response body to a file |
+
+## Body editor
+
+Active when editing the request body (press `Enter` on the Body tab).
+
+| Key | Action |
+|-----|--------|
+| `Enter` | New line with auto-indent |
+| `Tab` | Insert 2 spaces |
+| `Ctrl+f` | Format content as JSON |
+| `Esc` | Save and exit the editor |
+
+## Drawers
+
+These bindings apply inside the History, Collections and Environments drawers.
+
+| Key | Action |
+|-----|--------|
+| `↑` / `↓` | Navigate entries |
+| `Enter` | Load / open / activate the selected item |
+| `d` | Delete the selected item |
+| `n` | Create a new collection or environment |
+| `v` | View variables (Environments only) |
+| `a` | Add variable or save current request to collection |
+| `/` | Search (History drawer only) |
+| `Esc` | Go back or close the drawer |

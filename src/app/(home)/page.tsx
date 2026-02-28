@@ -1,24 +1,22 @@
-import { LayoutPage } from "@/components/layouts/layout-page";
-import { clientEnv } from "@/config/env";
-import { createLoader } from "@/lib/loader";
-import { Metadata } from "next";
+import type { Metadata } from "next";
+import { Hero } from "@/features/landing/components/hero";
+import { InstallSection } from "@/features/landing/components/install-section";
+import { FeaturesGrid } from "@/features/landing/components/features-grid";
+import { CtaSection } from "@/features/landing/components/cta-section";
 
 export const metadata: Metadata = {
-  title: `${clientEnv.APP_NAME} - Home`,
-  description: "Welcome to the homepage of the app.",
+  title: "apix — A lightweight Postman alternative for your terminal",
+  description:
+    "Send HTTP requests, manage collections and environments directly in your terminal. A TUI HTTP client written in Rust.",
 };
 
-const loadHomeData = createLoader("/", async ({ params, searchParams }) => {
-  return {
-    message: "Welcome to NextStart !",
-  };
-});
-
-export default async function Page(props: typeof loadHomeData.Props) {
-  const data = await loadHomeData(props);
+export default function HomePage() {
   return (
-    <LayoutPage className="items-center justify-center min-h-screen">
-      <h1 className="text-4xl font-semibold">{data.message}</h1>
-    </LayoutPage>
+    <>
+      <Hero />
+      <InstallSection />
+      <FeaturesGrid />
+      <CtaSection />
+    </>
   );
 }

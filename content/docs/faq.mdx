@@ -1,0 +1,72 @@
+# FAQ
+
+## Why apix over Postman?
+
+Postman is a powerful tool, but it comes with a GUI, an Electron runtime, optional cloud sync and an account requirement.
+apix is the opposite: a single binary, no GUI, no internet required, no account, no telemetry.
+
+If you live in the terminal and want to send HTTP requests without leaving it, apix is for you.
+If you need a visual response inspector shared across a large team, Postman might be the better fit.
+
+## Does it work on Windows?
+
+Yes. Pre-built binaries for **Windows x86_64** are available on the [Releases page](https://github.com/CianusDev/apix/releases).
+
+For the best experience, use apix inside a UNIX-compatible terminal:
+
+- **WSL** (Windows Subsystem for Linux) — recommended
+- **Git Bash**
+- **Windows Terminal** with PowerShell
+
+The native Windows terminal (cmd.exe) works but some box-drawing characters may not render correctly depending on your font.
+
+## How do I update apix?
+
+Re-run the install script — it always fetches the latest release:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/CianusDev/apix/main/install.sh | bash
+```
+
+If you installed manually, download the latest binary from the [Releases page](https://github.com/CianusDev/apix/releases) and replace the existing one in `~/.local/bin/`.
+
+If you built from source:
+
+```bash
+cd apix
+git pull
+cargo build --release
+cp target/release/apix ~/.local/bin/
+```
+
+## Where is my data stored?
+
+All data is stored locally in `~/.apix/`:
+
+```
+~/.apix/
+├── history.json
+├── collections.json
+└── environments.json
+```
+
+apix never sends your data anywhere. See the [Data storage](/docs/storage) section for the full format reference.
+
+## How can I contribute?
+
+Contributions are welcome! Here is the workflow:
+
+1. Fork the repo on GitHub
+2. Clone your fork: `git clone https://github.com/<your-username>/apix.git`
+3. Create a branch: `git checkout -b feature/my-feature`
+4. Make your changes and run the checks:
+
+```bash
+cargo test    # run all tests
+cargo clippy  # lint
+cargo fmt     # format
+```
+
+5. Commit, push and open a Pull Request against `CianusDev/apix`.
+
+See the [Contributing](/contributing) page for more details.
