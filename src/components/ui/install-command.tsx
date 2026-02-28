@@ -17,7 +17,7 @@ export function InstallCommand({ command }: InstallCommandProps) {
   }
 
   return (
-    <div className="flex items-center gap-3 overflow-hidden rounded-lg border border-border bg-card px-4 py-3">
+    <div className="flex items-center gap-3 overflow-hidden rounded-lg border border-border bg-input px-4 py-3">
       <Terminal size={16} className="shrink-0 text-primary" />
 
       <code className="flex-1 overflow-x-auto whitespace-nowrap font-mono text-sm text-foreground">

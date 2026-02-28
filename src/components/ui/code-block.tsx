@@ -7,7 +7,11 @@ interface CodeBlockProps {
   filename?: string;
 }
 
-export async function CodeBlock({ code, lang = "bash", filename }: CodeBlockProps) {
+export async function CodeBlock({
+  code,
+  lang = "bash",
+  filename,
+}: CodeBlockProps) {
   const html = await codeToHtml(code.trim(), {
     lang,
     theme: "vitesse-dark",
@@ -25,7 +29,7 @@ export async function CodeBlock({ code, lang = "bash", filename }: CodeBlockProp
 
       {/* highlighted code */}
       <div
-        className="overflow-x-auto p-4 [&>pre]:!bg-transparent [&>pre]:!p-0 [&>pre]:outline-none"
+        className="overflow-x-auto  p-4 [&>pre]:bg-transparent! [&>pre]:p-0! [&>pre]:outline-none"
         // biome-ignore lint/security/noDangerouslySetInnerHtml: shiki output is trusted
         dangerouslySetInnerHTML={{ __html: html }}
       />

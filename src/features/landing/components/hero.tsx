@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Route } from "next";
 import { TuiScreenshot } from "@/components/ui/tui-screenshot";
+import Image from "next/image";
 
 const TUI_ASCII = `┌─ APIX ─────────────────────────────────────────────────────────────┐
 │  POST  https://api.example.com/users              [ENV:prod]       │
@@ -93,7 +94,15 @@ export function Hero() {
       </div>
 
       {/* TUI screenshot column */}
-      <TuiScreenshot className="hidden lg:block">{TUI_ASCII}</TuiScreenshot>
+      <TuiScreenshot className="hidden lg:block">
+        <Image
+          src="/apix-screenshot.png"
+          alt="apix TUI screenshot"
+          width={1200}
+          height={800}
+          className="h-auto w-full scale-108 object-cover"
+        />
+      </TuiScreenshot>
     </section>
   );
 }
