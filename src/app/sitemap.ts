@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { clientEnv } from "@/config/env";
 import { getAllDocs } from "@/lib/docs";
 
-const BASE_URL = clientEnv.APP_URL ?? "https://apix.dev";
+const BASE_URL = clientEnv.APP_URL ?? "https://apix-site.vercel.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
